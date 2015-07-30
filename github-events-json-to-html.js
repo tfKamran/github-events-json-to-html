@@ -5,17 +5,15 @@ var GithubEventsJSONToHTML = {};
         var today = new Date();
 
         return today.getYear() == this.getYear() && today.getMonth() == this.getMonth() && today.getDate() == this.getDate();
-    }
+    };
 
     Date.prototype.isThisYear = function() {
-        var today = new Date();
-
-        return today.getYear() == this.getYear();
-    }
+        return new Date().getYear() == this.getYear();
+    };
 
     Date.prototype.getMonthInWords = function() {
         return ["Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"][this.getMonth()];
-    }
+    };
 
     Date.prototype.prettyPrint = function() {
         if (this.isToday())
@@ -24,7 +22,7 @@ var GithubEventsJSONToHTML = {};
             return "" + this.getMonthInWords() + " " + this.getDate();
         else
             return "" + this.getYear() + " " + this.getMonthInWords() + " " + this.getDate();
-    }
+    };
 
     GithubEventsJSONToHTML.parse = function(events) {
         var markUp = "<div class='github-public-activity'>";
@@ -35,8 +33,6 @@ var GithubEventsJSONToHTML = {};
 
         for (var index in events) {
             var event = events[index];
-            console.log(event);
-
             markUp += "<div class='event'>";
 
             markUp += "<img src='" + event.actor.avatar_url + "' width='34px'>";
