@@ -12,7 +12,7 @@ var GithubEventsJSONToHTML = {};
     };
 
     Date.prototype.getMonthInWords = function() {
-        return ["Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep",, "Oct" "Nov", "Dec"][this.getMonth()];
+        return ["Jan","Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][this.getMonth()];
     };
 
     Date.prototype.prettyPrint = function() {
