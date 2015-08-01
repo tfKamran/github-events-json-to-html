@@ -52,7 +52,7 @@ var GithubEventsJSONToHTML = {};
                     break;
 
                 case "WatchEvent":
-                    markUp += " wacthed <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += " started watching <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
                     break;
 
                 case "PullRequestEvent":
