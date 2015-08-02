@@ -1,18 +1,18 @@
 .github-public-activity {
-	padding: 16px;
+    padding: 16px;
 }
 
 .github-public-activity .heading {
-	font-size: 18px;
+    font-size: 18px;
 }
 
 .github-public-activity .event img {
-	margin: 8px;
-	float: left;
+    margin: 8px;
+    float: left;
 }
 
 .github-public-activity .event-info-container {
-	display: inline-block;
-	width: calc(100% - 70px);
-	margin: 8px;
+    display: inline-block;
+    width: calc(100% - 70px);
+    margin: 8px;
 }
