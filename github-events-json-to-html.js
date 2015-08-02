@@ -52,6 +52,8 @@ var GithubEventsJSONToHTML = (function () {
             markUp += "</div>";
 
             for (var index in events) {
+                console.log(event);
+                
                 var event = events[index];
 
                 markUp += "<div class='event'>";
@@ -75,7 +77,7 @@ var GithubEventsJSONToHTML = (function () {
                     markUp += " started watching <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
                     break;
                 case "PullRequestEvent":
-                    markUp += " opened a pull request for <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += " " + event.payload.action + " a pull request for <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
                     break;
                 case "ForkEvent":
                     markUp += " forked <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
@@ -85,6 +87,9 @@ var GithubEventsJSONToHTML = (function () {
                     break;
                 case "GollumEvent":
                     markUp += event.payload.pages[0].action + " <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    break;
+                case "IssueCommentEvent":
+                    markUp += " commented on <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
                     break;
                 }
 
@@ -100,19 +105,22 @@ var GithubEventsJSONToHTML = (function () {
                     markUp += event.payload.description + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "WatchEvent":
-                    markUp += " starred the repository - " + new Date(event.created_at).prettyPrint();
+                    markUp += " Starred the repository - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "PullRequestEvent":
                     markUp += event.payload.pull_request.body + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "ForkEvent":
-                    markUp += " forked the repository - " + new Date(event.created_at).prettyPrint();
+                    markUp += " Forked the repository - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "IssuesEvent":
                     markUp += event.payload.issue.body + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "GollumEvent":
                     markUp += event.payload.pages[0].action + " - " + new Date(event.created_at).prettyPrint();
+                    break;
+                case "IssueCommentEvent":
+                    markUp += event.payload.comment.body + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 }
                 

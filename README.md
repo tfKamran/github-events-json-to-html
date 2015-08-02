@@ -10,6 +10,6 @@ Hit `https://api.github.com/users/<YourUsername>/events/public` and pass the res
 
 and then append or bind it to your DOM.
 
-Refer [example](example/index.html).
+Refer [example](example/scripts/example.js).
 
-**Note:** It currently supports only 7 types of events, feel free to contribute.
+**Note:** It currently supports only 8 types of events, feel free to contribute.
