@@ -27,14 +27,18 @@ Date.prototype.getMonthInWords = function () {
 
 Date.prototype.prettyPrint = function () {
     if (this.isToday()) {
-        return this.getHours() + ":" + this.getMinutes();
+        return "today " + get2DigitsZeroPadded(this.getHours()) + ":" + get2DigitsZeroPadded(this.getMinutes());
     } else if (this.isThisYear()) {
         return this.getMonthInWords() +
             " " + this.getDate();
     } else {
         return this.getYear() +
             " " + this.getMonthInWords() +
-            " " + this.getDate();
+            " " + get2DigitsZeroPadded(this.getDate());
+    }
+
+    function get2DigitsZeroPadded(input) {
+        return (""+input).length < 2 ? "0" + input : input; 
     }
 };
 
@@ -45,15 +49,13 @@ var GithubEventsJSONToHTML = (function () {
 
             markUp += "<div class='github-public-activity'>";
 
-            markUp += "<div class='heading'>";
+            markUp += "<h2 class='heading'>";
 
-            markUp += events[0].actor.login + "'s public activity:";
+            markUp += events[0].actor.login + "'s public activity";
 
-            markUp += "</div>";
+            markUp += "</h2>";
 
             for (var index in events) {
-                console.log(event);
-                
                 var event = events[index];
 
                 markUp += "<div class='event'>";
@@ -64,32 +66,32 @@ var GithubEventsJSONToHTML = (function () {
                 
                 markUp += "<div class='event-info'>";
 
-                markUp += "<a href='" + event.actor.url + "'>" + event.actor.login + "</a>";
+                markUp += "<a href='" + event.actor.url + "' target='_new'>" + event.actor.login + "</a>";
                 
                 switch (event.type) {
                 case "PushEvent":
-                    markUp += " commited to <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += " commited to <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "CreateEvent":
-                    markUp += " created <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += " created <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "WatchEvent":
-                    markUp += " started watching <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += " started watching <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "PullRequestEvent":
-                    markUp += " " + event.payload.action + " a pull request for <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += " " + event.payload.action + " a pull request for <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "ForkEvent":
-                    markUp += " forked <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += " forked <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "IssuesEvent":
-                    markUp += " raised an issue about <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += " " + event.payload.action + " an issue about <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "GollumEvent":
-                    markUp += event.payload.pages[0].action + " <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += event.payload.pages[0].action + " <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "IssueCommentEvent":
-                    markUp += " commented on <a href='" + event.repo.url + "'>" + event.repo.name + "</a>";
+                    markUp += " commented on <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 }
 
