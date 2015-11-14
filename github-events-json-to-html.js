@@ -66,32 +66,32 @@ var GithubEventsJSONToHTML = (function () {
                 
                 markUp += "<div class='event-info'>";
 
-                markUp += "<a href='" + event.actor.url + "' target='_new'>" + event.actor.login + "</a>";
+                markUp += "<a href='https://github.com/" + event.actor.login + "' target='_new'>" + event.actor.login + "</a>";
                 
                 switch (event.type) {
                 case "PushEvent":
-                    markUp += " commited to <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
+                    markUp += " commited to <a href='https://github.com/" + event.repo.name + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "CreateEvent":
-                    markUp += " created <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
+                    markUp += " created <a href='https://github.com/" + event.repo.name + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "WatchEvent":
-                    markUp += " started watching <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
+                    markUp += " started watching <a href='https://github.com/" + event.repo.name + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "PullRequestEvent":
-                    markUp += " " + event.payload.action + " a pull request for <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
+                    markUp += " " + event.payload.action + " a pull request for <a href='https://github.com/" + event.repo.name + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "ForkEvent":
-                    markUp += " forked <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
+                    markUp += " forked <a href='https://github.com/" + event.repo.name + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "IssuesEvent":
-                    markUp += " " + event.payload.action + " an issue about <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
+                    markUp += " " + event.payload.action + " an issue about <a href='https://github.com/" + event.repo.name + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "GollumEvent":
-                    markUp += event.payload.pages[0].action + " <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
+                    markUp += event.payload.pages[0].action + " <a href='https://github.com/" + event.repo.name + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 case "IssueCommentEvent":
-                    markUp += " commented on <a href='" + event.repo.url + "' target='_new'>" + event.repo.name + "</a>";
+                    markUp += " commented on <a href='https://github.com/" + event.repo.name + "' target='_new'>" + event.repo.name + "</a>";
                     break;
                 }
 
