@@ -45,6 +45,12 @@ Date.prototype.prettyPrint = function () {
 var GithubEventsJSONToHTML = (function () {
     return {
         parse: function (events) {
+            if (typeof marked == "undefined") {
+                var marked = function(string) {
+                    return string;
+                }
+            }
+
             var markUp = "";
 
             markUp += "<div class='github-public-activity'>";
@@ -101,28 +107,28 @@ var GithubEventsJSONToHTML = (function () {
                 
                 switch (event.type) {
                 case "PushEvent":
-                    markUp += event.payload.commits[0].message + " - " + new Date(event.created_at).prettyPrint();
+                    markUp += marked(event.payload.commits[0].message) + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "CreateEvent":
-                    markUp += event.payload.description + " - " + new Date(event.created_at).prettyPrint();
+                    markUp += marked(event.payload.description) + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "WatchEvent":
                     markUp += " Starred the repository - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "PullRequestEvent":
-                    markUp += event.payload.pull_request.body + " - " + new Date(event.created_at).prettyPrint();
+                    markUp += marked(event.payload.pull_request.body) + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "ForkEvent":
                     markUp += " Forked the repository - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "IssuesEvent":
-                    markUp += event.payload.issue.body + " - " + new Date(event.created_at).prettyPrint();
+                    markUp += marked(event.payload.issue.body) + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "GollumEvent":
                     markUp += event.payload.pages[0].action + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 case "IssueCommentEvent":
-                    markUp += event.payload.comment.body + " - " + new Date(event.created_at).prettyPrint();
+                    markUp += marked(event.payload.comment.body) + " - " + new Date(event.created_at).prettyPrint();
                     break;
                 }
                 
